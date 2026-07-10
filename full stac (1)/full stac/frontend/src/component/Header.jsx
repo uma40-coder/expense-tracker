@@ -1,13 +1,11 @@
-import React from 'react'
+import "./Header.css";
 
-const Header = () => {
+function Header() {
   return (
-    <div>
-      <header>
-        <h1>Expense Tracker</h1>
-      </header>
-    </div>
+    <header>
+      <h1>Expense Tracker</h1>
+    </header>
   );
 }
 
-export default Header
+export default Header;

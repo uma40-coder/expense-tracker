@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>© 2026 Expense Tracker</p>
+      <p>&copy; 2023 Expense Tracker. All rights reserved.</p>
     </footer>
   );
 }

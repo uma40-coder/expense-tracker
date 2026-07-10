@@ -1,15 +1,35 @@
 import { useState } from "react";
+import axios from "axios";
 
 function ExpenseForm() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = () => {
-    console.log("Button Clicked");
-    console.log(title);
-    console.log(amount);
-    console.log(category);
+  const handleSubmit = async () => {
+    const expense = {
+      title: title,
+      amount: amount,
+      category: category,
+    };
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
+      const response = await axios.post(`${API_URL}/expenses`, expense);
+      console.log(response.data);
+      setTitle("");
+      setAmount("");
+      setCategory("");
+      setMessage("Expense Added Successfully!");
+
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    } catch (error) {
+      setMessage("Something went wrong!");
+    }
   };
 
   return (
@@ -39,6 +59,7 @@ function ExpenseForm() {
       />
       <p>You entered Category: {category}</p>
       <button onClick={handleSubmit}>Add Expense</button>
+      <p>{message}</p>
     </div>
   );
 }
