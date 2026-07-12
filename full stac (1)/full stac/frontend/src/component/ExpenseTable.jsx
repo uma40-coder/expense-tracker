@@ -11,7 +11,7 @@ function ExpenseTable() {
       console.log(response.data);
       setExpenses(response.data);
     } catch (error) {
-      console.log(error);
+      console.log(error) ;
     }
   };
 
