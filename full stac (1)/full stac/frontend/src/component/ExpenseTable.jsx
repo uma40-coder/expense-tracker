@@ -7,9 +7,8 @@ function ExpenseTable() {
   const fetchExpenses = async () => {
     try {
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
-      const response = await axios.get(`${API_URL}/expenses`);
-      console.log(response.data);
-      setExpenses(response.data);
+     const response = await axios.get(`${API_URL}/expenses`);
+     setExpenses(response.data.data);
     } catch (error) {
       console.log(error) ;
     }
