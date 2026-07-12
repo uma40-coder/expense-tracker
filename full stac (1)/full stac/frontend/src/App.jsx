@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <h1>Expense Table Removed</h1>
+      <ExpenseTable />
       <Footer />
     </div>
   );
