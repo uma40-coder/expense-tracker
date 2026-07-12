@@ -39,13 +39,19 @@ const fetchExpenses = async () => {
         </thead>
 
         <tbody>
-          {expenses.map((expense) => (
-            <tr key={expense.id}>
-              <td>{expense.title}</td>
-              <td>{expense.amount}</td>
-              <td>{expense.category}</td>
+          {Array.isArray(expenses) ? (
+            expenses.map((expense) => (
+              <tr key={expense.id}>
+                <td>{expense.title}</td>
+                <td>{expense.amount}</td>
+                <td>{expense.category}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No data</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
