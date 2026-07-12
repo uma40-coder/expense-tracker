@@ -4,15 +4,22 @@ import axios from "axios";
 function ExpenseTable() {
   const [expenses, setExpenses] = useState([]);
 
-  const fetchExpenses = async () => {
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
-     const response = await axios.get(`${API_URL}/expenses`);
-     setExpenses(response.data.data);
-    } catch (error) {
-      console.log(error) ;
-    }
-  };
+const fetchExpenses = async () => {
+  try {
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
+    const response = await axios.get(`${API_URL}/expenses`);
+
+    console.log("Full response:", response);
+    console.log("response.data:", response.data);
+    console.log("response.data.data:", response.data.data);
+    console.log("Is Array?", Array.isArray(response.data.data));
+
+    setExpenses(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   useEffect(() => {
     fetchExpenses();
