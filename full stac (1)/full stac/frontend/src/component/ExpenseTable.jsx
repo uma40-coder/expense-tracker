@@ -7,9 +7,13 @@ function ExpenseTable() {
   const fetchExpenses = async () => {
     try {
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
       const response = await axios.get(`${API_URL}/expenses`);
+
       console.log(response.data);
-      setExpenses(response.data);
+
+      // Take only the array from the response
+      setExpenses(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -33,13 +37,19 @@ function ExpenseTable() {
         </thead>
 
         <tbody>
-          {expenses.map((expense) => (
-            <tr key={expense.id}>
-              <td>{expense.title}</td>
-              <td>{expense.amount}</td>
-              <td>{expense.category}</td>
+          {expenses.length > 0 ? (
+            expenses.map((expense) => (
+              <tr key={expense.id}>
+                <td>{expense.title}</td>
+                <td>{expense.amount}</td>
+                <td>{expense.category}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">No Expenses Found</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
