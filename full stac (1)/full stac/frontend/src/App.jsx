@@ -10,12 +10,9 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-   
-      <Header/>
-      <ExpenseForm/>
-      <ExpenseTable/>
-      <Footer/>
-      
+      <Header />
+      <h1>Expense Table Removed</h1>
+      <Footer />
     </div>
   );
 }
