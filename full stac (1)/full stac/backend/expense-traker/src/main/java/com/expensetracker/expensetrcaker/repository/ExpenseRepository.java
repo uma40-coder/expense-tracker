@@ -1,7 +1,0 @@
-package  com.expensetracker.expensetrcaker.repository;
-import com.expensetracker.expensetrcaker.entity.Expense;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
-
-}
