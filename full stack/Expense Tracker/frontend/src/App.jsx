@@ -51,7 +51,7 @@ function App() {
       ) : (
         <main className="dashboard-content">
           {/* Expense Addition Form */}
-          <ExpenseForm onExpenseAdded={handleExpenseAdded} />
+          <ExpenseForm username={username} onExpenseAdded={handleExpenseAdded} />
 
           {/* View / Hide Previous Expenses Button */}
           <div className="toggle-section">
@@ -64,7 +64,7 @@ function App() {
           </div>
 
           {/* Previous Expenses Table - Displayed on Button Click */}
-          {showTable && <ExpenseTable ref={tableRef} />}
+          {showTable && <ExpenseTable ref={tableRef} username={username} />}
         </main>
       )}
 

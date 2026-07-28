@@ -27,6 +27,15 @@ public class ExpenseService {
 
     }
 
+    public List<Expense> getExpensesByUsername(String username) {
+
+        if (username != null && !username.isBlank()) {
+            return expenseRepository.findByUsername(username);
+        }
+        return expenseRepository.findAll();
+
+    }
+
     public Expense updateExpense(Integer id, Expense updatedExpense) {
 
         Expense existingExpense = expenseRepository.findById(id)
@@ -35,6 +44,9 @@ public class ExpenseService {
         existingExpense.setTitle(updatedExpense.getTitle());
         existingExpense.setAmount(updatedExpense.getAmount());
         existingExpense.setCategory(updatedExpense.getCategory());
+        if (updatedExpense.getUsername() != null) {
+            existingExpense.setUsername(updatedExpense.getUsername());
+        }
 
         return expenseRepository.save(existingExpense);
     }
@@ -56,6 +68,7 @@ public class ExpenseService {
         expense.setTitle(dto.getTitle());
         expense.setAmount(dto.getAmount());
         expense.setCategory(dto.getCategory());
+        expense.setUsername(dto.getUsername());
 
         return expense;
 
@@ -68,6 +81,7 @@ public class ExpenseService {
         dto.setTitle(expense.getTitle());
         dto.setAmount(expense.getAmount());
         dto.setCategory(expense.getCategory());
+        dto.setUsername(expense.getUsername());
 
         return dto;
 
@@ -75,11 +89,11 @@ public class ExpenseService {
 
     public ExpenseDTO saveExpense(ExpenseDTO dto) {
 
-    Expense expense = convertToEntity(dto);
+        Expense expense = convertToEntity(dto);
 
-    Expense savedExpense = expenseRepository.save(expense);
+        Expense savedExpense = expenseRepository.save(expense);
 
-    return convertToDTO(savedExpense);
+        return convertToDTO(savedExpense);
 
-}
+    }
 }

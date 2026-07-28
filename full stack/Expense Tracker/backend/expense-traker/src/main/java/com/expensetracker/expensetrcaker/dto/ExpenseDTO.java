@@ -20,4 +20,6 @@ public class ExpenseDTO {
 
     @NotBlank(message = "Category cannot be empty")
     private String category;
+
+    private String username;
 }

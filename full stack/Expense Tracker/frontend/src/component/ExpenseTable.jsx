@@ -1,7 +1,7 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
 
-const ExpenseTable = forwardRef((props, ref) => {
+const ExpenseTable = forwardRef(({ username }, ref) => {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -9,7 +9,12 @@ const ExpenseTable = forwardRef((props, ref) => {
     setLoading(true);
     try {
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
-      const response = await axios.get(`${API_URL}/expenses`);
+      const currentUser = username || localStorage.getItem("username");
+      const url = currentUser
+        ? `${API_URL}/expenses?username=${encodeURIComponent(currentUser)}`
+        : `${API_URL}/expenses`;
+
+      const response = await axios.get(url);
 
       console.log("Fetched expenses:", response.data);
 
@@ -31,7 +36,7 @@ const ExpenseTable = forwardRef((props, ref) => {
 
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  }, [username]);
 
   return (
     <div className="card expense-table-card">

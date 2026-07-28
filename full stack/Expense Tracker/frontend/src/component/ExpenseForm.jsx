@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function ExpenseForm({ onExpenseAdded }) {
+function ExpenseForm({ username, onExpenseAdded }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -14,10 +14,13 @@ function ExpenseForm({ onExpenseAdded }) {
       return;
     }
 
+    const currentUser = username || localStorage.getItem("username");
+
     const expense = {
       title: title,
       amount: amount,
       category: category,
+      username: currentUser,
     };
 
     try {

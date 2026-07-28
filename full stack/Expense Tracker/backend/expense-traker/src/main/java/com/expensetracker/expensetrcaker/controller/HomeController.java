@@ -31,8 +31,11 @@ public class HomeController {
     }
 
     @GetMapping
-    public List<Expense> getAllExpenses() {
+    public List<Expense> getAllExpenses(@RequestParam(required = false) String username) {
 
+        if (username != null && !username.isBlank()) {
+            return expenseService.getExpensesByUsername(username);
+        }
         return expenseService.getAllExpenses();
 
     }
