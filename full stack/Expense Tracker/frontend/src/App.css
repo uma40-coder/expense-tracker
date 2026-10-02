@@ -1,0 +1,6 @@
+/* App layout enhancements */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
