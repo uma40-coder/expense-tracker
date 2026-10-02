@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 // import com.expense_tracker.expense_tracker.dto.ExpenseDTO;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/expenses")
 public class HomeController {
